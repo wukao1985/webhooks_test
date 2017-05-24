@@ -15,14 +15,13 @@ var received_updates = [];
 var received_counts = 0;
 
 app.get('/', function(req, res) {
-  res.send('<pre>' + received_counts + '</pre>');
+  received_counts += 1;
+  res.send('<pre>' + JSON.stringify(received_updates, null, 2) + '</pre>');
 });
 
 app.get('/webhooks', function(req, res) {
-  console.log(req);
   if (req.param('hub.mode') != 'subscribe'
       || req.param('hub.verify_token') != process.env.VERIFY_TOKEN) {
-    console.log('hub.mode is not subscribe');
     res.sendStatus(401);
     return;
   }
@@ -36,9 +35,8 @@ app.post('/webhooks', function(req, res) {
     res.sendStatus(401);
     return;
   }
-  //console.log(JSON.stringify(req.body, null, 2));
-  //received_updates.unshift(req.body);
-  received_counts += 1;
+  console.log(JSON.stringify(req.body, null, 2));
+  received_updates.unshift(req.body);
   res.sendStatus(200);
 });
 
