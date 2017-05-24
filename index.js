@@ -15,8 +15,9 @@ var received_updates = [];
 var received_counts = 0;
 
 app.get('/', function(req, res) {
-  received_counts += 1;
-  res.send('<pre>' + JSON.stringify(received_updates, null, 2) + '</pre>');
+  //res.send('<pre>' + JSON.stringify(received_updates, null, 2) + '</pre>');
+  res.send('<pre>' + received_counts + '</pre>');
+
 });
 
 app.get('/webhooks', function(req, res) {
@@ -35,6 +36,7 @@ app.post('/webhooks', function(req, res) {
     res.sendStatus(401);
     return;
   }
+  received_counts += req.body.entry.length;
   console.log(JSON.stringify(req.body, null, 2));
   received_updates.unshift(req.body);
   res.sendStatus(200);
