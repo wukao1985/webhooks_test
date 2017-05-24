@@ -12,9 +12,11 @@ app.use(xhub({algorithm: 'sha1', secret: process.env.APP_SECRET }));
 app.use(bodyParser.json());
 
 var received_updates = [];
+var received_counts = 0;
 
 app.get('/', function(req, res) {
-  res.send('<pre>' + JSON.stringify(received_updates, null, 2) + '</pre>');
+  received_counts += 1;
+  res.send('<pre>' + received_counts + '</pre>');
 });
 
 app.get('/webhooks', function(req, res) {
