@@ -36,6 +36,8 @@ app.post('/webhooks', function(req, res) {
     res.sendStatus(401);
     return;
   }
+  console.log(req.body.entry);
+  var i = 0;
   //console.log(JSON.stringify(req.body, null, 2));
   for (i = 0; i < req.body.entry.length; i++) {
     received_counts += 1;
