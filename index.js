@@ -38,11 +38,11 @@ app.post('/webhooks', function(req, res) {
     return;
   }
   var i = 0;
-  console.log(JSON.stringify(req.body, null, 2));
+  //console.log(JSON.stringify(req.body, null, 2));
   for (i = 0; i < req.body.entry.length; i++) {
     received_counts += 1;
     //console.log(Math.round((new Date()).getTime() / 1000) - req.body.entry[i].changes.value.conversion_timestamp, received_counts);
-    //console.log(Math.round((new Date()).getTime() / 1000) - Date.parse(req.body.entry[i].changes[0].value.conversion_timestamp).getTime()/1000);
+    console.log(Math.round((new Date()).getTime() / 1000) - Date.parse(req.body.entry[i].changes[0].value.conversion_timestamp)/1000);
   }
 
   console.log(JSON.stringify(req.body));
