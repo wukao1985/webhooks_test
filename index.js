@@ -36,7 +36,6 @@ app.post('/webhooks', function(req, res) {
     res.sendStatus(401);
     return;
   }
-  //console.log(req.body.entry);
   var i = 0;
   //console.log(JSON.stringify(req.body, null, 2));
   for (i = 0; i < req.body.entry.length; i++) {
@@ -45,7 +44,7 @@ app.post('/webhooks', function(req, res) {
     console.log(Math.round((new Date()).getTime() / 1000) - req.body.entry[i].changes[0].value.conversion_timestamp);
   }
 
-  //console.log(req.body.entry.length);
+  console.log(JSON.stringify(req.body));
   received_updates.unshift(req.body);
   res.sendStatus(200);
 });
