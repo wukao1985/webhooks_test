@@ -36,9 +36,13 @@ app.post('/webhooks', function(req, res) {
     res.sendStatus(401);
     return;
   }
-  received_counts += req.body.entry.length;
   //console.log(JSON.stringify(req.body, null, 2));
-  console.log(req.body.entry.length);
+  for (i = 0; i < req.body.entry.length; i++) {
+    received_counts += 1；
+    console.log('delay:'.Math.round((new Date()).getTime() / 1000) - req.body.entry[i].changes.value.conversion_timestamp, received_counts);
+  }
+
+  //console.log(req.body.entry.length);
   received_updates.unshift(req.body);
   res.sendStatus(200);
 });
