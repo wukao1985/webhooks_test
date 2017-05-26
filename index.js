@@ -41,7 +41,7 @@ app.post('/webhooks', function(req, res) {
   for (i = 0; i < req.body.entry.length; i++) {
     received_counts += 1;
     //console.log(Math.round((new Date()).getTime() / 1000) - req.body.entry[i].changes.value.conversion_timestamp, received_counts);
-    console.log(Math.round((new Date()).getTime() / 1000) - req.body.entry[i].changes[0].value.conversion_timestamp);
+    console.log(Math.round((new Date()).getTime() / 1000) - Date.parse(req.body.entry[i].changes[0].value.conversion_timestamp).getTime()/1000);
   }
 
   console.log(JSON.stringify(req.body));
