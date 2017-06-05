@@ -16,8 +16,8 @@ var received_updates = [];
 var received_counts = 0;
 
 app.get('/', function(req, res) {
-  //res.send('<pre>' + JSON.stringify(received_updates, null, 2) + '</pre>');
-  res.send('<pre>' + received_counts + '</pre>');
+  res.send('<pre>' + JSON.stringify(received_updates, null, 2) + '</pre>');
+  //res.send('<pre>' + received_counts + '</pre>');
 
 });
 
